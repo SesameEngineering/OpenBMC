@@ -1,0 +1,16 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+ENV['VAGRANT_DEFAULT_PROVIDER'] = 'libvirt'
+
+Vagrant.configure("2") do |config|
+  config.vm.define "FBOBMC-TP-build" do |config|
+	  config.vm.hostname = "TP-FBOBMC-build"
+	  config.vm.box = "generic/ubuntu1604"
+	  config.vm.box_check_update = false
+	  config.vm.network "public_network", :bridge => 'br0', :dev => 'br0'
+	  config.vm.provider :libvirt do |v|
+		  v.memory= 4096
+	  end
+  end
+end
